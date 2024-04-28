@@ -11,7 +11,7 @@ try:
         frequent_itemsets = pickle.load(file)
 
     # Muat dataset atau objek data yang berisi nama produk
-    data = pd.read_excel('C:\\Users\\ASUS\\Desktop\\SKRIPSI\\asosiasi\\file_bersih_new_2.xlsx')
+    data = pd.read_excel('file_bersih_new_2.xlsx')
 
     # Ambil semua nama produk dari kolom 'Description'
     products = data['Description'].unique().tolist()
