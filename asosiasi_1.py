@@ -7,11 +7,11 @@ st.title('Aplikasi Analisis Asosiasi dengan FP-Growth')
 
 try:
     # Muat model pickle
-    with open('frequent_itemsets_new.pkl', 'rb') as file:
+    with open('frequent_itemsets_new1.pkl', 'rb') as file:
         frequent_itemsets = pickle.load(file)
 
     # Muat dataset atau objek data yang berisi nama produk
-    data = pd.read_excel('file_bersih_new_2.xlsx')
+    data = pd.read_excel('file_bersih_new_3.xlsx')
 
     # Ambil semua nama produk dari kolom 'Description'
     products = data['Description'].unique().tolist()
