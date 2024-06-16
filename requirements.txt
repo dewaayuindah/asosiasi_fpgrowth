@@ -2,4 +2,3 @@ streamlit
 mlxtend
 pandas
 openpyxl
-pickle
