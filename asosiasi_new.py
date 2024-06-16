@@ -2,24 +2,7 @@ import streamlit as st
 import pickle
 import pandas as pd
 from mlxtend.frequent_patterns import association_rules
-# Menambahkan CSS untuk latar belakang
-# Menambahkan CSS untuk latar belakang gradasi
-# Menambahkan CSS untuk latar belakang gradasi gelap
-# Menambahkan CSS untuk latar belakang gradasi gelap ke terang
-# Menambahkan CSS untuk latar belakang gradasi oranye
-# Menambahkan CSS untuk latar belakang gradasi oranye dengan hitam
-st.markdown(
-    """
-    <style>
-    .stApp {
-        background: linear-gradient(to right, rgba(0, 0, 0, 0.4), #ff7e5f, #feb47b); /* Gradasi dari hitam transparan ke oranye */
-        background-size: cover;
-        color: black; /* Mengatur warna teks agar terlihat jelas di latar belakang */
-    }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
+
 
 
 
