@@ -29,25 +29,17 @@ st.markdown(f"""
     font-family: Garamond;
     font-size: 2.5vw; /* Ukuran font relatif terhadap lebar viewport */
     font-weight: bold;
-   color: #fff;
-  text-shadow: 
-    0px 0px 2px #000, 
+  color: #fff;
+text-shadow: 
+    0px 0px 1px #000, 
+    0px 0px 2px #000,
+    0px 0px 3px #000,
     0px 0px 4px #000,
+    0px 0px 5px #000,
     0px 0px 6px #000,
+    0px 0px 7px #000,
     0px 0px 8px #000,
-    0px 0px 10px #000,
-    0px 0px 12px #000,
-    0px 0px 14px #000,
-    0px 0px 16px #000,
-    0px 0px 18px #000,
-    0px 0px 20px #000;
-     0px 0px 4px #fff,
-      0px 0px 8px #fff,
-      0px 0px 12px #fff,
-      0px 0px 16px #fff,
-      0px 0px 20px #fff,
-      0px 0px 24px #fff,
-      0px 0px 28px #fff,
+    0px 0px 9px #000;
 }}
 </style>
 <div class="container">
