@@ -2,34 +2,95 @@ import streamlit as st
 import pickle
 import pandas as pd
 from mlxtend.frequent_patterns import association_rules
+import base64
 
+# Path gambar
+image_path = "C:/Users/ASUS/Desktop/SKRIPSI/apk-removebg-preview.png"
 
+# Membaca file gambar dan mengonversinya menjadi string base64
+with open(image_path, "rb") as image_file:
+    encoded_string = base64.b64encode(image_file.read()).decode()
 
+# CSS untuk mengatur gambar dan teks overlay
+st.markdown(f"""
+<style>
+.container {{
+    position: relative;
+    text-align: center;
+    color: white;
+    margin-bottom: 20px; /* Spasi vertikal dari bawah */
+}}
 
-st.title('Aplikasi Analisis Asosiasi dengan FP-Growth')
+.centered {{
+    position: absolute;
+    top: 50%; /* Atur jarak vertikal dari teks */
+    left: 65%; /* Atur jarak dari kiri */
+    transform: translate(-50%, -50%); /* Menyesuaikan transformasi agar tetap di tengah */
+    font-family: Garamond;
+    font-size: 2.5vw; /* Ukuran font relatif terhadap lebar viewport */
+    font-weight: bold;
+   color: #fff;
+  text-shadow: 
+    0px 0px 2px #000, 
+    0px 0px 4px #000,
+    0px 0px 6px #000,
+    0px 0px 8px #000,
+    0px 0px 10px #000,
+    0px 0px 12px #000,
+    0px 0px 14px #000,
+    0px 0px 16px #000,
+    0px 0px 18px #000,
+    0px 0px 20px #000;
+     0px 0px 4px #fff,
+      0px 0px 8px #fff,
+      0px 0px 12px #fff,
+      0px 0px 16px #fff,
+      0px 0px 20px #fff,
+      0px 0px 24px #fff,
+      0px 0px 28px #fff,
+}}
+</style>
+<div class="container">
+  <img src="data:image/png;base64,{encoded_string}" alt="Image" style="width:100%;  border-radius: 50%; /* Membuat gambar menjadi bulat */">
+  <div class="centered">Aplikasi Analisis Asosiasi dengan <em>FP-Growth</em></div>
+  <div style="margin-top: 20px;"</div>
+</div>
+""", unsafe_allow_html=True)
+
 
 try:
     # Muat model pickle
-    with open('frequent_itemsets_new_model.pkl', 'rb') as file:
+    with open('frequent_itemsets_new_model_0.015.pkl', 'rb') as file:
         frequent_itemsets = pickle.load(file)
 
     # Muat dataset atau objek data yang berisi nama produk
-    data = pd.read_excel('file_bersih_new_dataset.xlsx')
+    data = pd.read_excel('C:\\Users\\ASUS\\Desktop\\SKRIPSI\\asosiasi\\file_bersih_new_dataset.xlsx')
 
     # Ambil semua nama produk dari kolom 'Description'
     products = data['Description'].unique().tolist()
-
-    # Buat dropdown menu untuk memilih produk sebagai anteseden
+    # Tambahkan opsi kosong di awal daftar produk
+    products.insert(0, "")
+    # Buat dropdown menu untuk memilih produk sebagai antecedent
     selected_product = st.selectbox(
-        'Pilih Produk sebagai Anteseden:', products)
+        '**Pilih Produk sebagai *Antecedent*:**', products)
 
     # Tambahkan dropdown menu untuk memilih kriteria lift
     selected_lift = st.selectbox(
-        'Pilih Kriteria Lift:', ['','Lift > 1', 'Lift = 1', 'Lift < 1'])
+        '**Pilih Kriteria *Lift*:**', ['','Lift = 1', 'Lift > 1', 'Lift < 1'])
     
-    st.info(f"Keterangan Nilai Support")
-    st.info(f"Keterangan Nilai Confidence")
-    st.info("Keterangan: Lift adalah ukuran kekuatan asosiasi antara produk. Lift > 1 menunjukkan asosiasi yang lebih kuat dari yang diharapkan secara acak, Lift = 1 menunjukkan asosiasi yang tidak lebih kuat dari yang diharapkan secara acak, dan Lift < 1 menunjukkan asosiasi yang lebih lemah dari yang diharapkan secara acak.")
+    st.info(f"**Keterangan Nilai *Support*:**\n\n"
+    "Parameter ini, mengukur seberapa sering kombinasi item muncul dalam *dataset* penjualan ritel *online* non-toko, dinyatakan dalam persentase.")
+    st.info(f"**Keterangan Nilai *Confidence*:**\n\n"
+    "Parameter ini, mengukur seberapa kuat aturan yang terbentuk dari kemunculan item B dalam transaksi yang sudah mengandung item A, dinyatakan dalam persentase.")
+    # Menampilkan keterangan Lift dengan list bulat menggunakan Markdown
+    st.info("""
+    **Keterangan Nilai *Lift*:**
+    
+    Parameter ini, mengukur kevalidan aturan asosiasi yang dihasilkan antara item, dinyatakan dalam bentuk desimal, sebagai berikut.
+    - Lift > 1: Asosiasi kuat, sering terjadi.
+    - Lift = 1: Asosiasi kebetulan (acak).
+    - Lift < 1: Asosiasi lemah, jarang terjadi.
+    """)
 
     def analyze_association(selected_product, frequent_itemsets):
         # Gunakan algoritma Association Rules untuk mendapatkan aturan asosiasi
@@ -84,16 +145,18 @@ try:
         association_rules['confidence'] = (association_rules['confidence'] * 100).apply(lambda x: f"{x:.2f}%")
 
     # Tampilkan aturan asosiasi yang diperoleh
-    if not association_rules.empty:
-        st.write("### Aturan Asosiasi untuk Produk:", selected_product)
+    if selected_product == "":
+        st.write("Silakan pilih produk terlebih dahulu.")
+    elif not association_rules.empty:
+        st.write(f"### **Aturan Asosiasi untuk Produk:**", selected_product)
+       
         st.write(association_rules[['consequents',
                                     'support', 'confidence', 'lift ratio']])
-        st.info(f"Item dengan antecedent A ({selected_product}) dan consequent B yang terdapat dalam tabel harus ditempatkan berdekatan dalam gudang oleh karyawan ritel serta, dapat direkomendasikan kepada pelanggan untuk membeli item/produk selanjutnya.")
+        st.info(f"**Representasi Pengetahuan:** \n\n Item dengan *antecedent* A ({selected_product}) dan *consequent* B yang terdapat dalam tabel harus ditempatkan berdekatan dalam gudang oleh karyawan ritel. Selain itu, item tersebut dapat direkomendasikan secara *online* kepada pelanggan untuk membeli produk selanjutnya.")
 
     else:
         st.write(
             "Tidak ada aturan asosiasi yang ditemukan untuk produk yang dipilih.")
-
 except FileNotFoundError:
     st.error("File not found. Please check the file path.")
 except Exception as e:
