@@ -5,7 +5,7 @@ from mlxtend.frequent_patterns import association_rules
 import base64
 
 # Path gambar
-image_path = "C:/Users/ASUS/Desktop/SKRIPSI/apk-removebg-preview.png"
+image_path = "apk-removebg-preview.png"
 
 # Membaca file gambar dan mengonversinya menjadi string base64
 with open(image_path, "rb") as image_file:
