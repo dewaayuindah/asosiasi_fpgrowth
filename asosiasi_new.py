@@ -139,6 +139,8 @@ try:
     # Tampilkan aturan asosiasi yang diperoleh
     if selected_product == "":
         st.write("Silakan pilih produk terlebih dahulu.")
+    elif selected_lift == "":
+        st.write("Silakan pilih kriteria lift.")
     elif not association_rules.empty:
         st.write(f"### **Aturan Asosiasi untuk Produk:**", selected_product)
        
