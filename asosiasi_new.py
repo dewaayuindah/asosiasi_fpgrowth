@@ -148,8 +148,7 @@ try:
                                     'support', 'confidence', 'lift ratio']])
         st.info(f"**Representasi Pengetahuan:** \n\n Item dengan *antecedent* A ({selected_product}) dan *consequent* B yang terdapat dalam tabel harus ditempatkan berdekatan dalam gudang oleh karyawan ritel. Selain itu, item tersebut dapat direkomendasikan secara *online* kepada pelanggan untuk membeli produk selanjutnya.")
     else:
-        st.write(
-            "Tidak ada aturan asosiasi yang ditemukan untuk produk yang dipilih.")
+        st.write(f"Tidak ada aturan asosiasi yang ditemukan pada nilai ({selected_lift}).")
 except FileNotFoundError:
     st.error("File not found. Please check the file path.")
 except Exception as e:
