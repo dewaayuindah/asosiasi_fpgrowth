@@ -79,9 +79,9 @@ try:
     **Keterangan Nilai *Lift*:**
     
     Parameter ini, mengukur kevalidan aturan asosiasi yang dihasilkan antara item, dinyatakan dalam bentuk desimal, sebagai berikut.
-    - Lift > 1: Asosiasi kuat, sering terjadi.
-    - Lift = 1: Asosiasi kebetulan (acak).
-    - Lift < 1: Asosiasi lemah, jarang terjadi.
+    - *Lift* > 1: Asosiasi kuat, sering terjadi.
+    - *Lift* = 1: Asosiasi kebetulan (acak).
+    - *Lift* < 1: Asosiasi lemah, jarang terjadi.
     """)
 
     def analyze_association(selected_product, frequent_itemsets):
