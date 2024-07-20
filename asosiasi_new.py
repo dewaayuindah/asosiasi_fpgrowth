@@ -64,7 +64,7 @@ try:
     products.insert(0, "")
     # Buat dropdown menu untuk memilih produk sebagai antecedent
     selected_product = st.selectbox(
-        '**Pilih Produk sebagai *Antecedent*:**', products)
+        '**Pilih item sebagai *Antecedent*:**', products)
 
     # Tambahkan dropdown menu untuk memilih kriteria lift
     selected_lift = st.selectbox(
