@@ -73,15 +73,15 @@ try:
     st.info(f"**Keterangan Nilai *Support*:**\n\n"
     "Parameter ini, mengukur seberapa sering kombinasi item muncul dalam *dataset* penjualan ritel non-toko, dinyatakan dalam persentase.")
     st.info(f"**Keterangan Nilai *Confidence*:**\n\n"
-    "Parameter ini, mengukur seberapa kuat aturan yang terbentuk dari kemunculan item B dalam transaksi yang sudah mengandung item A, dinyatakan dalam persentase.")
+    "Parameter ini, mengukur seberapa kuat aturan asosiasi yang terbentuk dari kemunculan item B dalam transaksi yang sudah mengandung item A, dinyatakan dalam persentase.")
     # Menampilkan keterangan Lift dengan list bulat menggunakan Markdown
     st.info("""
     **Keterangan Nilai *Lift*:**
     
-    Parameter ini, mengukur kevalidan aturan asosiasi yang dihasilkan antara item, dinyatakan dalam bentuk desimal, sebagai berikut.
-    - *Lift* > 1: Asosiasi kuat, sering terjadi.
-    - *Lift* = 1: Asosiasi kebetulan (acak).
-    - *Lift* < 1: Asosiasi lemah, jarang terjadi.
+    Parameter ini, mengukur kevalidan aturan asosiasi yang dihasilkan, dinyatakan dalam bentuk rasio, sebagai berikut.
+    - *Lift* > 1: Aturan Asosiasi positif, sering dibeli bersamaan.
+    - *Lift* = 1: Aturan Asosiasi tidak memiliki pengaruh, hanya kebetulan dibeli bersamaan.
+    - *Lift* < 1: Aturan Asosiasi negatif, jarang dibeli bersamaan.
     """)
 
     def analyze_association(selected_product, frequent_itemsets):
