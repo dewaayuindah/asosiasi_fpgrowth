@@ -79,9 +79,9 @@ try:
     **Keterangan Nilai *Lift*:**
     
     Parameter ini, mengukur kevalidan aturan asosiasi yang dihasilkan, dinyatakan dalam bentuk rasio, sebagai berikut.
-    - *Lift* > 1: Aturan Asosiasi positif, sering dibeli bersamaan.
+    - *Lift* > 1: Aturan Asosiasi positif, sering terjadi/sering dibeli bersamaan.
     - *Lift* = 1: Aturan Asosiasi tidak memiliki pengaruh, hanya kebetulan dibeli bersamaan.
-    - *Lift* < 1: Aturan Asosiasi negatif, jarang dibeli bersamaan.
+    - *Lift* < 1: Aturan Asosiasi negatif, jarang terjadi/jarang dibeli bersamaan.
     """)
 
     def analyze_association(selected_product, frequent_itemsets):
