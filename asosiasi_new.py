@@ -146,7 +146,7 @@ try:
        
         st.write(association_rules[['consequents',
                                     'support', 'confidence', 'lift ratio']])
-        st.info(f"**Representasi Pengetahuan:** \n\n Item dengan *antecedent* A ({selected_product}) dan *consequent* B yang terdapat dalam tabel harus ditempatkan berdekatan dalam gudang oleh karyawan ritel. Selain itu, item tersebut dapat direkomendasikan secara *online* kepada pelanggan untuk membeli item selanjutnya.")
+        st.info(f"**Representasi Pengetahuan:** \n\n Item dengan *antecedent* A ({selected_product}) dan *consequent* B yang terdapat dalam tabel dapat diletakkan secara berdekatan, serta dapat dipakai sebagai rekomendasi item dalam konteks penjualan ritel non-toko.")
     else:
         st.write(f"Tidak ada aturan asosiasi yang ditemukan pada nilai ({selected_lift}).")
 except FileNotFoundError:
