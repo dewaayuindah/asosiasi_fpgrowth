@@ -52,7 +52,7 @@ text-shadow:
 
 try:
     # Muat model pickle
-    with open('frequent_itemsets_new_model_0.015.pkl', 'rb') as file:
+    with open('frequent_itemsets_new_model_0.01.pkl', 'rb') as file:
         frequent_itemsets = pickle.load(file)
 
     # Muat dataset atau objek data yang berisi nama produk
